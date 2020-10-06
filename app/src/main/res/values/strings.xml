@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Food Delivery</string>
+    <string name="splash_description">VietNam\'s Faster Growing \nFood Delivery Platform</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="title_login">Login to your account</string>
+    <string name="enter_email_id">Enter Email ID</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login">Login</string>
+    <string name="txt_continue_social_accounts">Continue Social Accounts</string>
+    <string name="txt_new_acc">Don\'t have an account ? CREATE NOW</string>
+    <string name="continue_with_facebook">Continue With Facebook</string>
+</resources>
