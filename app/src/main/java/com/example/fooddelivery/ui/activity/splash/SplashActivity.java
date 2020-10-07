@@ -1,4 +1,4 @@
-package com.example.fooddelivery.ui.splash;
+package com.example.fooddelivery.ui.activity.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.ActivitySplashBinding;
 import com.example.fooddelivery.di.component.ActivityComponent;
-import com.example.fooddelivery.ui.base.BaseActivity;
-import com.example.fooddelivery.ui.login.LoginActivity;
+import com.example.fooddelivery.ui.activity.base.BaseActivity;
+import com.example.fooddelivery.ui.activity.login.LoginActivity;
 
 public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashViewModel> implements SplashNavigator {
     private static final long TIME_DELAY = 2000;

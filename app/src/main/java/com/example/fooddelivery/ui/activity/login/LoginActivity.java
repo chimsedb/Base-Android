@@ -1,22 +1,21 @@
-package com.example.fooddelivery.ui.main;
+package com.example.fooddelivery.ui.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Button;
 
 import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
-import com.example.fooddelivery.databinding.ActivityMainBinding;
+import com.example.fooddelivery.databinding.ActivityLoginBinding;
 import com.example.fooddelivery.di.component.ActivityComponent;
-import com.example.fooddelivery.ui.base.BaseActivity;
-import com.example.fooddelivery.ui.login.LoginActivity;
+import com.example.fooddelivery.ui.activity.base.BaseActivity;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel> implements LoginNavigator {
+
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_main;
+        return R.layout.activity_login;
     }
 
     @Override
@@ -27,10 +26,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel.setNavigator(this);
     }
 
     @Override
     public void performDependencyInjection(ActivityComponent buildComponent) {
         buildComponent.inject(this);
+    }
+
+    @Override
+    public void login() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

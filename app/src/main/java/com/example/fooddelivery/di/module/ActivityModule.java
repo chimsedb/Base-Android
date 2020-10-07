@@ -4,11 +4,12 @@ import androidx.core.util.Supplier;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery.ViewModelProviderFactory;
-import com.example.fooddelivery.ui.base.BaseActivity;
-import com.example.fooddelivery.ui.login.LoginViewModel;
-import com.example.fooddelivery.ui.main.MainActivity;
-import com.example.fooddelivery.ui.main.MainViewModel;
-import com.example.fooddelivery.ui.splash.SplashViewModel;
+import com.example.fooddelivery.ui.activity.base.BaseActivity;
+import com.example.fooddelivery.ui.activity.login.LoginViewModel;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
+import com.example.fooddelivery.ui.activity.main.MainPagerAdapter;
+import com.example.fooddelivery.ui.activity.main.MainViewModel;
+import com.example.fooddelivery.ui.activity.splash.SplashViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,6 +20,11 @@ public class ActivityModule {
 
     public ActivityModule(BaseActivity<?, ?> activity) {
         this.activity = activity;
+    }
+
+    @Provides
+    MainPagerAdapter provideMainPagerAdapter() {
+        return new MainPagerAdapter(activity.getSupportFragmentManager());
     }
 
     @Provides

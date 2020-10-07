@@ -1,9 +1,6 @@
-package com.example.fooddelivery.ui.main;
+package com.example.fooddelivery.ui.activity.main;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.example.fooddelivery.ui.base.BaseViewModel;
+import com.example.fooddelivery.ui.activity.base.BaseViewModel;
 
 public class MainViewModel extends BaseViewModel<MainNavigator> {
     private final MainActivity context;

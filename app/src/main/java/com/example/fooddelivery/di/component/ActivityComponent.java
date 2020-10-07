@@ -2,9 +2,9 @@ package com.example.fooddelivery.di.component;
 
 import com.example.fooddelivery.di.module.ActivityModule;
 import com.example.fooddelivery.di.scope.ActivityScope;
-import com.example.fooddelivery.ui.main.MainActivity;
-import com.example.fooddelivery.ui.login.LoginActivity;
-import com.example.fooddelivery.ui.splash.SplashActivity;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
+import com.example.fooddelivery.ui.activity.login.LoginActivity;
+import com.example.fooddelivery.ui.activity.splash.SplashActivity;
 
 import dagger.Component;
 
