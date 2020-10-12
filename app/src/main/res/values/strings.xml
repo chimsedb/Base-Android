@@ -10,4 +10,6 @@
     <string name="txt_continue_social_accounts">Continue Social Accounts</string>
     <string name="txt_new_acc">Don\'t have an account ? CREATE NOW</string>
     <string name="continue_with_facebook">Continue With Facebook</string>
+    <string name="title_home">Home</string>
+    <string name="title_offers">Offers</string>
 </resources>

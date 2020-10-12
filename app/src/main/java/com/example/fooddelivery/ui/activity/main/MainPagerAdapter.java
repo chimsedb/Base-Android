@@ -5,16 +5,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.fooddelivery.ui.fragment.home.HomeFragment;
+import com.example.fooddelivery.ui.fragment.offers.OffersFragment;
+
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
-    private int tabCount;
+    private int tabCount = 2;
 
     public MainPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.tabCount = 0;
-    }
-
-    public void setCount(int count) {
-        tabCount = count;
     }
 
     @NonNull
@@ -22,9 +20,9 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-//                return BlogFragment.newInstance();
+                return HomeFragment.newInstance();
             case 1:
-//                return OpenSourceFragment.newInstance();
+                return OffersFragment.newInstance();
             default:
                 return null;
         }

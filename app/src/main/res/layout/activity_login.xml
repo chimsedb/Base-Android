@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.fooddelivery.ui.login.LoginViewModel" />
+            type="com.example.fooddelivery.ui.activity.login.LoginViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,6 +1,8 @@
 package com.example.fooddelivery.ui.activity.main;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Window;
 
 import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
@@ -35,8 +37,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void setUp() {
         activityMainBinding = getViewDataBinding();
-        mainPagerAdapter.setCount(4);
-//        activityMainBinding.myViewPager.setAdapter(mainPagerAdapter);
+        activityMainBinding.myViewPager.setAdapter(mainPagerAdapter);
     }
 
     @Override
