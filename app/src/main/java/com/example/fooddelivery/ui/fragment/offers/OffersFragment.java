@@ -14,6 +14,8 @@ import com.example.fooddelivery.ui.activity.base.BaseFragment;
 
 public class OffersFragment extends BaseFragment<FragmentOffersBinding, OfferViewModel> {
 
+    public static final String TAG = OffersFragment.class.getName();
+
     public static OffersFragment newInstance() {
         Bundle args = new Bundle();
         OffersFragment fragment = new OffersFragment();

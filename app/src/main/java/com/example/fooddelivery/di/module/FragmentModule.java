@@ -5,11 +5,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery.ViewModelProviderFactory;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.fragment.home.FoodAdapter;
 import com.example.fooddelivery.ui.fragment.home.HomeViewModel;
 import com.example.fooddelivery.ui.fragment.home.OfferAdapter;
 import com.example.fooddelivery.ui.fragment.offers.OfferViewModel;
-
-import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,5 +38,10 @@ public class FragmentModule {
     @Provides
     OfferAdapter provideOfferAdapter() {
         return new OfferAdapter();
+    }
+
+    @Provides
+    FoodAdapter provideFoodAdapter() {
+        return new FoodAdapter();
     }
 }

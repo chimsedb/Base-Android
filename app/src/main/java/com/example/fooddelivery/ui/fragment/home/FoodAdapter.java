@@ -1,6 +1,5 @@
 package com.example.fooddelivery.ui.fragment.home;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +12,22 @@ import com.example.fooddelivery.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> {
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> {
     private List<String> list;
 
-    public OfferAdapter() {
+    public FoodAdapter() {
         this.list = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_sales_home, parent, false);
-        ViewGroup.LayoutParams params = view.getLayoutParams();
-        params.width = (int) (parent.getMeasuredWidth() / 2.1);
-        view.setLayoutParams(params);
-        return new ViewHolder(view);
+    public FoodAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_food_home, parent, false);
+        return new FoodAdapter.ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, int position) {
     }
 
     @Override
