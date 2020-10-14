@@ -1,5 +1,7 @@
 package com.example.fooddelivery.di.module;
 
+import android.content.Context;
+
 import androidx.core.util.Supplier;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,10 +18,12 @@ import dagger.Provides;
 
 @Module
 public class ActivityModule {
+    private final Context context;
     private BaseActivity<?, ?> activity;
 
-    public ActivityModule(BaseActivity<?, ?> activity) {
+    public ActivityModule(BaseActivity<?, ?> activity, Context context) {
         this.activity = activity;
+        this.context = context;
     }
 
     @Provides

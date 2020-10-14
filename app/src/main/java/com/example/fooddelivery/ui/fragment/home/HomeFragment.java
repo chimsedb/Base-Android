@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.fooddelivery.BR;
@@ -14,13 +14,15 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.FragmentHomeBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
+import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortBottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
+public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> implements HomeNavigator {
 
     public static final String TAG = HomeFragment.class.getName();
     @Inject
@@ -28,6 +30,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Inject
     FoodAdapter foodAdapter;
+
+    @Inject
+    FilterAndSortBottomSheetDialog filterAndSortBottomSheetDialog;
 
     private FragmentHomeBinding binding;
 
@@ -51,6 +56,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        viewModel.setNavigator(this);
         binding = getViewDataBinding();
         setUp();
     }
@@ -65,10 +71,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         for (int i = 0; i < 10; i++) {
             list.add("1");
         }
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         binding.rcSales.setLayoutManager(manager);
         binding.rcSales.setAdapter(offerAdapter);
         offerAdapter.addItems(list);
+        offerAdapter.setActivity((MainActivity) getActivity());
     }
 
     private void setUpWithFoodAdapter() {
@@ -76,7 +83,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         for (int i = 0; i < 10; i++) {
             list.add("1");
         }
-        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         binding.rcFood.setLayoutManager(manager);
         binding.rcFood.setAdapter(foodAdapter);
         foodAdapter.addItems(list);
@@ -85,5 +92,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void performDependencyInjection(FragmentComponent buildComponent) {
         buildComponent.inject(this);
+    }
+
+    @Override
+    public void openDialogFilerAndSort() {
+        filterAndSortBottomSheetDialog.show(getFragmentManager(), FilterAndSortBottomSheetDialog.TAG);
     }
 }

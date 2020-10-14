@@ -1,30 +1,28 @@
 package com.example.fooddelivery.ui.activity.base;
 
-import android.app.Activity;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
 
 import com.example.fooddelivery.MyApplication;
+import com.example.fooddelivery.di.component.BottomSheetDialogComponent;
+import com.example.fooddelivery.di.component.DaggerBottomSheetDialogComponent;
 import com.example.fooddelivery.di.component.DaggerFragmentComponent;
 import com.example.fooddelivery.di.component.FragmentComponent;
+import com.example.fooddelivery.di.module.BottomSheetDialogModule;
 import com.example.fooddelivery.di.module.FragmentModule;
-import com.example.fooddelivery.ui.fragment.suggestion.SuggestionFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import javax.inject.Inject;
 
-public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseViewModel> extends Fragment {
+public abstract class BaseBottomSheetDialog<T extends ViewDataBinding, V extends BaseViewModel> extends BottomSheetDialogFragment {
     private View rootView;
     private T viewDataBinding;
 
@@ -48,27 +46,21 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
         setHasOptionsMenu(false);
     }
 
+    @Nullable
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         viewDataBinding.setVariable(getBindingVariable(), viewModel);
         rootView = viewDataBinding.getRoot();
         return rootView;
     }
 
-    public abstract void performDependencyInjection(FragmentComponent buildComponent);
+    public abstract void performDependencyInjection(BottomSheetDialogComponent buildComponent);
 
-    private FragmentComponent getBuildComponent() {
-        return DaggerFragmentComponent.builder()
+    private BottomSheetDialogComponent getBuildComponent() {
+        return DaggerBottomSheetDialogComponent.builder()
                 .appComponent(((MyApplication) (getContext().getApplicationContext())).appComponent)
-                .fragmentModule(new FragmentModule(this, getContext()))
+                .bottomSheetDialogModule(new BottomSheetDialogModule(this,getContext()))
                 .build();
     }
-
 }

@@ -49,7 +49,7 @@ public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseView
     private ActivityComponent getBuildComponent() {
         return DaggerActivityComponent.builder()
                 .appComponent(((MyApplication) getApplication()).appComponent)
-                .activityModule(new ActivityModule(this))
+                .activityModule(new ActivityModule(this,getApplicationContext()))
                 .build();
     }
 

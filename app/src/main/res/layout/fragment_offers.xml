@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.fooddelivery.ui.fragment.home.HomeViewModel" />
+            type="com.example.fooddelivery.ui.fragment.offers.OfferViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
