@@ -1,12 +1,10 @@
 package com.example.fooddelivery.ui.fragment.home;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery.R;
@@ -15,8 +13,6 @@ import com.example.fooddelivery.ui.fragment.suggestion.SuggestionFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.inject.Inject;
 
 public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> {
 
@@ -56,7 +52,7 @@ public class OfferAdapter extends RecyclerView.Adapter<OfferAdapter.ViewHolder> 
 
         @Override
         public void onClick(View view) {
-            mainActivity.replaceFragment(SuggestionFragment.newInstance());
+            mainActivity.navigateFragment(R.id.action_homeFragment_to_suggestionFragment);
         }
     }
 

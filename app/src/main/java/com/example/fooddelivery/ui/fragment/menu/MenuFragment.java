@@ -69,6 +69,6 @@ public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewMode
 
     @Override
     public void finishThis() {
-        ((MainActivity) getActivity()).replaceFragment(SuggestionFragment.newInstance());
+        ((MainActivity) getActivity()).navigateFragment(R.id.action_menuFragment_to_suggestionFragment);
     }
 }

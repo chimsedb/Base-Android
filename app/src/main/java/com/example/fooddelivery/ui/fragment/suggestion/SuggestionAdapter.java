@@ -53,7 +53,7 @@ public class SuggestionAdapter extends RecyclerView.Adapter<SuggestionAdapter.Vi
 
         @Override
         public void onClick(View view) {
-            activity.replaceFragment(MenuFragment.newInstance());
+            activity.navigateFragment(R.id.action_suggestionFragment_to_menuFragment);
         }
     }
 
