@@ -87,6 +87,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         binding.rcFood.setLayoutManager(manager);
         binding.rcFood.setAdapter(foodAdapter);
         foodAdapter.addItems(list);
+        foodAdapter.setActivity((MainActivity) getActivity());
     }
 
     @Override
@@ -97,5 +98,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     @Override
     public void openDialogFilerAndSort() {
         filterAndSortBottomSheetDialog.show(getFragmentManager(), FilterAndSortBottomSheetDialog.TAG);
+    }
+
+    @Override
+    public void openMyLocation() {
+        ((MainActivity) getActivity()).navigateFragment(R.id.action_homeFragment_to_myLocationFragment);
     }
 }

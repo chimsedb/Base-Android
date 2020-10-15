@@ -50,21 +50,38 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 case R.id.navigation_home:
                     navController.setGraph(navController.getNavInflater().inflate(R.navigation.home_nav));
                     break;
-                case R.id.navigation_offers:
-                    navController.setGraph(navController.getNavInflater().inflate(R.navigation.offers_nav));
+                case R.id.navigation_search:
+                    navController.setGraph(navController.getNavInflater().inflate(R.navigation.search_nav));
+                    break;
+                case R.id.navigation_cart:
+                    navController.setGraph(navController.getNavInflater().inflate(R.navigation.cart_nav));
                     break;
             }
             return true;
         });
     }
 
-
     public void navigateFragment(int id) {
         navController.navigate(id);
+    }
+
+    public void popFragmentBackStack() {
+        navController.popBackStack();
     }
 
     @Override
     public void performDependencyInjection(ActivityComponent buildComponent) {
         buildComponent.inject(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }

@@ -9,4 +9,8 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
     public void openDialogFilerAndSort() {
         getNavigator().openDialogFilerAndSort();
     }
+
+    public void openMyLocation(){
+        getNavigator().openMyLocation();
+    }
 }

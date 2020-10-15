@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.fooddelivery.ui.fragment.home.HomeFragment;
-import com.example.fooddelivery.ui.fragment.offers.OffersFragment;
+import com.example.fooddelivery.ui.fragment.search.SearchFragment;
 
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
     private int tabCount = 2;
@@ -22,7 +22,7 @@ public class MainPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return HomeFragment.newInstance();
             case 1:
-                return OffersFragment.newInstance();
+                return SearchFragment.newInstance();
             default:
                 return null;
         }

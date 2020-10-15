@@ -14,6 +14,7 @@ import com.example.fooddelivery.databinding.FragmentMenuBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
+import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
 import com.example.fooddelivery.ui.fragment.suggestion.SuggestionFragment;
 
 import java.util.ArrayList;
@@ -63,12 +64,7 @@ public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewMode
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         binding.rcFood.setLayoutManager(manager);
         binding.rcFood.setAdapter(menuAdapter);
-        binding.rcFood.addItemDecoration(new MenuDecorator());
+        binding.rcFood.addItemDecoration(new CardPaddingGridDecorator());
         menuAdapter.addItems(list);
-    }
-
-    @Override
-    public void finishThis() {
-        ((MainActivity) getActivity()).navigateFragment(R.id.action_menuFragment_to_suggestionFragment);
     }
 }
