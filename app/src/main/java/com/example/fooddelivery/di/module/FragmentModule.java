@@ -15,6 +15,7 @@ import com.example.fooddelivery.ui.fragment.home.HomeViewModel;
 import com.example.fooddelivery.ui.fragment.home.OfferAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuViewModel;
+import com.example.fooddelivery.ui.fragment.more.MoreViewModel;
 import com.example.fooddelivery.ui.fragment.my_location.MyLocationViewModel;
 import com.example.fooddelivery.ui.fragment.search.SearchVPAdapter;
 import com.example.fooddelivery.ui.fragment.search.SearchViewModel;
@@ -102,6 +103,13 @@ public class FragmentModule {
         Supplier<SetLocationViewModel> supplier = () -> new SetLocationViewModel();
         ViewModelProviderFactory<SetLocationViewModel> factory = new ViewModelProviderFactory<>(SetLocationViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(SetLocationViewModel.class);
+    }
+
+    @Provides
+    MoreViewModel provideMoreViewModel() {
+        Supplier<MoreViewModel> supplier = () -> new MoreViewModel();
+        ViewModelProviderFactory<MoreViewModel> factory = new ViewModelProviderFactory<>(MoreViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(MoreViewModel.class);
     }
 
     //Adapter RecyclerView

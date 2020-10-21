@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/more_nav.xml"
+    app:startDestination="@id/moreFragment">
+
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.example.fooddelivery.ui.fragment.more.MoreFragment"
+        android:label="MoreFragment" >
+        <action
+            android:id="@+id/action_moreFragment_to_myLocationFragment2"
+            app:destination="@id/myLocationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/myLocationFragment2"
+        android:name="com.example.fooddelivery.ui.fragment.my_location.MyLocationFragment"
+        android:label="MyLocationFragment" >
+        <action
+            android:id="@+id/action_myLocationFragment2_to_setLocationFragment2"
+            app:destination="@id/setLocationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/setLocationFragment2"
+        android:name="com.example.fooddelivery.ui.fragment.set_location.SetLocationFragment"
+        android:label="SetLocationFragment" >
+        <action
+            android:id="@+id/action_setLocationFragment2_to_myLocationFragment2"
+            app:destination="@id/myLocationFragment2" />
+    </fragment>
+</navigation>

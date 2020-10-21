@@ -56,6 +56,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 case R.id.navigation_cart:
                     navController.setGraph(navController.getNavInflater().inflate(R.navigation.cart_nav));
                     break;
+                case R.id.navigation_more:
+                    navController.setGraph(navController.getNavInflater().inflate(R.navigation.more_nav));
+                    break;
             }
             return true;
         });
