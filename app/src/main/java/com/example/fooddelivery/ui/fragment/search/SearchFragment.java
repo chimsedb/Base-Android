@@ -12,6 +12,8 @@ import com.example.fooddelivery.databinding.FragmentSearchBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 
+import javax.inject.Inject;
+
 public class SearchFragment extends BaseFragment<FragmentSearchBinding, SearchViewModel> implements SearchNavigator {
 
     @Inject
