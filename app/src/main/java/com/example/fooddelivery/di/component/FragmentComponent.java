@@ -2,11 +2,13 @@ package com.example.fooddelivery.di.component;
 
 import com.example.fooddelivery.di.module.FragmentModule;
 import com.example.fooddelivery.di.scope.FragmentScope;
+import com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardFragment;
 import com.example.fooddelivery.ui.fragment.cart.CartFragment;
 import com.example.fooddelivery.ui.fragment.home.HomeFragment;
 import com.example.fooddelivery.ui.fragment.menu.MenuFragment;
 import com.example.fooddelivery.ui.fragment.more.MoreFragment;
 import com.example.fooddelivery.ui.fragment.my_location.MyLocationFragment;
+import com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodFragment;
 import com.example.fooddelivery.ui.fragment.search.SearchFragment;
 import com.example.fooddelivery.ui.fragment.search.dishs.DishFragment;
 import com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantFragment;
@@ -37,4 +39,8 @@ public interface FragmentComponent {
     void inject(SetLocationFragment setLocationFragment);
 
     void inject(MoreFragment moreFragment);
+
+    void inject(PaymentMethodFragment paymentMethodFragment);
+
+    void inject(AddNewCardFragment addNewCardFragment);
 }

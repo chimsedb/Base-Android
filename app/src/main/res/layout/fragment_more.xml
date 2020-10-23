@@ -146,6 +146,7 @@
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center_vertical"
+            android:onClick="@{()->viewModel.paymentMethodOpen()}"
             android:text="Payment"
             android:textColor="@android:color/black"
             app:layout_constraintLeft_toRightOf="@id/btn_manage_payment"

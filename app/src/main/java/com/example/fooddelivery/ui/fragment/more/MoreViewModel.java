@@ -6,4 +6,8 @@ public class MoreViewModel extends BaseViewModel<MoreNavigator> {
     public void manageAddressOpen() {
         getNavigator().manageAddressOpen();
     }
+
+    public void paymentMethodOpen() {
+        getNavigator().paymentMethodOpen();
+    }
 }

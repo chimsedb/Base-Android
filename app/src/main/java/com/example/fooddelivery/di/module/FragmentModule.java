@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery.ViewModelProviderFactory;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardViewModel;
 import com.example.fooddelivery.ui.fragment.cart.CartAdapter;
 import com.example.fooddelivery.ui.fragment.cart.CartViewModel;
 import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortBottomSheetDialog;
@@ -17,6 +18,7 @@ import com.example.fooddelivery.ui.fragment.menu.MenuAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuViewModel;
 import com.example.fooddelivery.ui.fragment.more.MoreViewModel;
 import com.example.fooddelivery.ui.fragment.my_location.MyLocationViewModel;
+import com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodViewModel;
 import com.example.fooddelivery.ui.fragment.search.SearchVPAdapter;
 import com.example.fooddelivery.ui.fragment.search.SearchViewModel;
 import com.example.fooddelivery.ui.fragment.search.dishs.DishAdapter;
@@ -110,6 +112,20 @@ public class FragmentModule {
         Supplier<MoreViewModel> supplier = () -> new MoreViewModel();
         ViewModelProviderFactory<MoreViewModel> factory = new ViewModelProviderFactory<>(MoreViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(MoreViewModel.class);
+    }
+
+    @Provides
+    PaymentMethodViewModel providePaymentMethodViewModel() {
+        Supplier<PaymentMethodViewModel> supplier = () -> new PaymentMethodViewModel();
+        ViewModelProviderFactory<PaymentMethodViewModel> factory = new ViewModelProviderFactory<>(PaymentMethodViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(PaymentMethodViewModel.class);
+    }
+
+    @Provides
+    AddNewCardViewModel provideAddNewCardViewModel() {
+        Supplier<AddNewCardViewModel> supplier = () -> new AddNewCardViewModel();
+        ViewModelProviderFactory<AddNewCardViewModel> factory = new ViewModelProviderFactory<>(AddNewCardViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(AddNewCardViewModel.class);
     }
 
     //Adapter RecyclerView

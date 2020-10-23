@@ -1,4 +1,4 @@
-package com.example.fooddelivery.ui.fragment.more;
+package com.example.fooddelivery.ui.fragment.payment_methods;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 
 import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
-import com.example.fooddelivery.databinding.FragmentMoreBinding;
+import com.example.fooddelivery.databinding.FragmentPaymentMethodBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
 
-public class MoreFragment extends BaseFragment<FragmentMoreBinding, MoreViewModel> implements MoreNavigator {
-    private FragmentMoreBinding binding;
+public class PaymentMethodFragment extends BaseFragment<FragmentPaymentMethodBinding, PaymentMethodViewModel> implements PaymentMethodNavigator {
+    private FragmentPaymentMethodBinding binding;
 
     @Override
     public int getBindingVariable() {
@@ -23,7 +23,7 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding, MoreViewMode
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_more;
+        return R.layout.fragment_payment_method;
     }
 
     @Override
@@ -39,12 +39,7 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding, MoreViewMode
     }
 
     @Override
-    public void manageAddressOpen() {
-        ((MainActivity) getActivity()).navigateFragment(R.id.action_moreFragment_to_myLocationFragment);
-    }
-
-    @Override
-    public void paymentMethodOpen() {
-        ((MainActivity) getActivity()).navigateFragment(R.id.action_moreFragment_to_paymentMethodFragment);
+    public void addNewCard() {
+        ((MainActivity) getActivity()).navigateFragment(R.id.action_paymentMethodFragment_to_addNewCardFragment);
     }
 }

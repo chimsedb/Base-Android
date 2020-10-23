@@ -1,30 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/more_nav.xml"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/more_nav.xml"
     app:startDestination="@id/moreFragment">
 
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.fooddelivery.ui.fragment.more.MoreFragment"
-        android:label="MoreFragment" >
+        android:label="MoreFragment">
         <action
-            android:id="@+id/action_moreFragment_to_myLocationFragment2"
-            app:destination="@id/myLocationFragment2" />
+            android:id="@+id/action_moreFragment_to_myLocationFragment"
+            app:destination="@id/myLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_moreFragment_to_paymentMethodFragment"
+            app:destination="@id/paymentMethodFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/myLocationFragment2"
+        android:id="@+id/myLocationFragment"
         android:name="com.example.fooddelivery.ui.fragment.my_location.MyLocationFragment"
-        android:label="MyLocationFragment" >
+        android:label="MyLocationFragment">
         <action
-            android:id="@+id/action_myLocationFragment2_to_setLocationFragment2"
-            app:destination="@id/setLocationFragment2" />
+            android:id="@+id/action_myLocationFragment_to_setLocationFragment"
+            app:destination="@id/setLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/setLocationFragment2"
+        android:id="@+id/setLocationFragment"
         android:name="com.example.fooddelivery.ui.fragment.set_location.SetLocationFragment"
-        android:label="SetLocationFragment" >
+        android:label="SetLocationFragment">
         <action
-            android:id="@+id/action_setLocationFragment2_to_myLocationFragment2"
-            app:destination="@id/myLocationFragment2" />
+            android:id="@+id/action_setLocationFragment_to_myLocationFragment"
+            app:destination="@id/myLocationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addNewCardFragment"
+        android:name="com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardFragment"
+        android:label="AddNewCardFragment" />
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodFragment"
+        android:label="PaymentMethodFragment" >
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_addNewCardFragment"
+            app:destination="@id/addNewCardFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

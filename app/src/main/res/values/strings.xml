@@ -38,4 +38,10 @@
     <string name="txt_save_as">Save as</string>
     <string name="title_office">Office</string>
     <string name="title_more">More</string>
+    <string name="txt_payment_method">Payment Method</string>
+    <string name="txt_tip_use_card">Tip : Use Card to enjoy faster checkouts.</string>
+    <string name="txt_credit_debit_card">Credit/Debit Card</string>
+    <string name="txt_cvv">CVV</string>
+    <string name="make_payment">Make Payment</string>
+    <string name="txt_add_new_card">Add New Card</string>
 </resources>
