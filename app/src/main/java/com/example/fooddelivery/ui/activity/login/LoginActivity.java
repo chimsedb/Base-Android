@@ -10,8 +10,9 @@ import com.example.fooddelivery.di.component.ActivityComponent;
 import com.example.fooddelivery.ui.activity.base.BaseActivity;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
 
-public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel> implements LoginNavigator {
+import javax.inject.Inject;
 
+public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewModel> implements LoginNavigator {
 
     @Override
     public int getLayoutId() {
