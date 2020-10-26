@@ -6,6 +6,7 @@ import androidx.core.util.Supplier;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery.ViewModelProviderFactory;
+import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardViewModel;
 import com.example.fooddelivery.ui.fragment.cart.CartAdapter;
@@ -45,85 +46,85 @@ public class FragmentModule {
     // ViewModel
 
     @Provides
-    HomeViewModel provideHomeViewModel() {
-        Supplier<HomeViewModel> supplier = () -> new HomeViewModel();
+    HomeViewModel provideHomeViewModel(DataManager dataManager) {
+        Supplier<HomeViewModel> supplier = () -> new HomeViewModel(dataManager);
         ViewModelProviderFactory<HomeViewModel> factory = new ViewModelProviderFactory<>(HomeViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(HomeViewModel.class);
     }
 
     @Provides
-    SearchViewModel provideOfferViewModel() {
-        Supplier<SearchViewModel> supplier = () -> new SearchViewModel();
+    SearchViewModel provideOfferViewModel(DataManager dataManager) {
+        Supplier<SearchViewModel> supplier = () -> new SearchViewModel(dataManager);
         ViewModelProviderFactory<SearchViewModel> factory = new ViewModelProviderFactory<>(SearchViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(SearchViewModel.class);
     }
 
     @Provides
-    SuggestionViewModel provideSuggestionViewModel() {
-        Supplier<SuggestionViewModel> supplier = () -> new SuggestionViewModel();
+    SuggestionViewModel provideSuggestionViewModel(DataManager dataManager) {
+        Supplier<SuggestionViewModel> supplier = () -> new SuggestionViewModel(dataManager);
         ViewModelProviderFactory<SuggestionViewModel> factory = new ViewModelProviderFactory<>(SuggestionViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(SuggestionViewModel.class);
     }
 
     @Provides
-    MenuViewModel provideMenuViewModel() {
-        Supplier<MenuViewModel> supplier = () -> new MenuViewModel();
+    MenuViewModel provideMenuViewModel(DataManager dataManager) {
+        Supplier<MenuViewModel> supplier = () -> new MenuViewModel(dataManager);
         ViewModelProviderFactory<MenuViewModel> factory = new ViewModelProviderFactory<>(MenuViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(MenuViewModel.class);
     }
 
     @Provides
-    DishViewModel provideDishViewModel() {
-        Supplier<DishViewModel> supplier = () -> new DishViewModel();
+    DishViewModel provideDishViewModel(DataManager dataManager) {
+        Supplier<DishViewModel> supplier = () -> new DishViewModel(dataManager);
         ViewModelProviderFactory<DishViewModel> factory = new ViewModelProviderFactory<>(DishViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(DishViewModel.class);
     }
 
     @Provides
-    RestaurantViewModel provideRestaurantViewModel() {
-        Supplier<RestaurantViewModel> supplier = () -> new RestaurantViewModel();
+    RestaurantViewModel provideRestaurantViewModel(DataManager dataManager) {
+        Supplier<RestaurantViewModel> supplier = () -> new RestaurantViewModel(dataManager);
         ViewModelProviderFactory<RestaurantViewModel> factory = new ViewModelProviderFactory<>(RestaurantViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(RestaurantViewModel.class);
     }
 
     @Provides
-    CartViewModel provideCartViewModel() {
-        Supplier<CartViewModel> supplier = () -> new CartViewModel();
+    CartViewModel provideCartViewModel(DataManager dataManager) {
+        Supplier<CartViewModel> supplier = () -> new CartViewModel(dataManager);
         ViewModelProviderFactory<CartViewModel> factory = new ViewModelProviderFactory<>(CartViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(CartViewModel.class);
     }
 
     @Provides
-    MyLocationViewModel provideMyLocationViewModel() {
-        Supplier<MyLocationViewModel> supplier = () -> new MyLocationViewModel();
+    MyLocationViewModel provideMyLocationViewModel(DataManager dataManager) {
+        Supplier<MyLocationViewModel> supplier = () -> new MyLocationViewModel(dataManager);
         ViewModelProviderFactory<MyLocationViewModel> factory = new ViewModelProviderFactory<>(MyLocationViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(MyLocationViewModel.class);
     }
 
     @Provides
-    SetLocationViewModel provideSetLocationViewModel() {
-        Supplier<SetLocationViewModel> supplier = () -> new SetLocationViewModel();
+    SetLocationViewModel provideSetLocationViewModel(DataManager dataManager) {
+        Supplier<SetLocationViewModel> supplier = () -> new SetLocationViewModel(dataManager);
         ViewModelProviderFactory<SetLocationViewModel> factory = new ViewModelProviderFactory<>(SetLocationViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(SetLocationViewModel.class);
     }
 
     @Provides
-    MoreViewModel provideMoreViewModel() {
-        Supplier<MoreViewModel> supplier = () -> new MoreViewModel();
+    MoreViewModel provideMoreViewModel(DataManager dataManager) {
+        Supplier<MoreViewModel> supplier = () -> new MoreViewModel(dataManager);
         ViewModelProviderFactory<MoreViewModel> factory = new ViewModelProviderFactory<>(MoreViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(MoreViewModel.class);
     }
 
     @Provides
-    PaymentMethodViewModel providePaymentMethodViewModel() {
-        Supplier<PaymentMethodViewModel> supplier = () -> new PaymentMethodViewModel();
+    PaymentMethodViewModel providePaymentMethodViewModel(DataManager dataManager) {
+        Supplier<PaymentMethodViewModel> supplier = () -> new PaymentMethodViewModel(dataManager);
         ViewModelProviderFactory<PaymentMethodViewModel> factory = new ViewModelProviderFactory<>(PaymentMethodViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(PaymentMethodViewModel.class);
     }
 
     @Provides
-    AddNewCardViewModel provideAddNewCardViewModel() {
-        Supplier<AddNewCardViewModel> supplier = () -> new AddNewCardViewModel();
+    AddNewCardViewModel provideAddNewCardViewModel(DataManager dataManager) {
+        Supplier<AddNewCardViewModel> supplier = () -> new AddNewCardViewModel(dataManager);
         ViewModelProviderFactory<AddNewCardViewModel> factory = new ViewModelProviderFactory<>(AddNewCardViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(AddNewCardViewModel.class);
     }

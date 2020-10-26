@@ -1,5 +1,9 @@
 package com.example.fooddelivery.data.local;
 
-public class AppPreferencesHelper implements PreferencesHelper{
+import javax.inject.Inject;
 
+public class AppPreferencesHelper implements PreferencesHelper {
+    @Inject
+    public AppPreferencesHelper() {
+    }
 }

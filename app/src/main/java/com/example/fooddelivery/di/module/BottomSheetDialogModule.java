@@ -6,6 +6,7 @@ import androidx.core.util.Supplier;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.fooddelivery.ViewModelProviderFactory;
+import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.ui.activity.base.BaseBottomSheetDialog;
 import com.example.fooddelivery.ui.fragment.filter_sort.FilterAdapter;
 import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortViewModel;
@@ -25,8 +26,8 @@ public class BottomSheetDialogModule {
     }
 
     @Provides
-    FilterAndSortViewModel provideFilterAndSortViewModel() {
-        Supplier<FilterAndSortViewModel> supplier = () -> new FilterAndSortViewModel();
+    FilterAndSortViewModel provideFilterAndSortViewModel(DataManager dataManager) {
+        Supplier<FilterAndSortViewModel> supplier = () -> new FilterAndSortViewModel(dataManager);
         ViewModelProviderFactory<FilterAndSortViewModel> factory = new ViewModelProviderFactory<>(FilterAndSortViewModel.class, supplier);
         return new ViewModelProvider(dialog, factory).get(FilterAndSortViewModel.class);
     }
