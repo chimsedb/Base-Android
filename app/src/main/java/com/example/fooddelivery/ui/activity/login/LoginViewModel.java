@@ -2,11 +2,15 @@ package com.example.fooddelivery.ui.activity.login;
 
 import android.util.Log;
 
+import com.example.fooddelivery.BuildConfig;
 import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.data.model.api.PhotoResponse;
 import com.example.fooddelivery.ui.activity.base.BaseViewModel;
+import com.example.fooddelivery.ui.activity.utils.StringUtils;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.Scheduler;
@@ -17,12 +21,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class LoginViewModel extends BaseViewModel<LoginNavigator> {
+
     public LoginViewModel(DataManager dataManager) {
         super(dataManager);
     }
 
     public void login() {
 //        getNavigator().login();
+        StringUtils.token = "64545";
         getDataManager().getListPhotos()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

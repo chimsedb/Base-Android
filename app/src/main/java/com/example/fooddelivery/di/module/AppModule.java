@@ -1,5 +1,6 @@
 package com.example.fooddelivery.di.module;
 
+import com.example.fooddelivery.BuildConfig;
 import com.example.fooddelivery.data.AppDataManager;
 import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.data.local.AppPreferencesHelper;
@@ -7,11 +8,13 @@ import com.example.fooddelivery.data.local.PreferencesHelper;
 import com.example.fooddelivery.data.remote.ApiHelper;
 import com.example.fooddelivery.data.remote.AppApiHelper;
 import com.example.fooddelivery.data.remote.ServiceEndPoint;
+import com.example.fooddelivery.ui.activity.utils.StringUtils;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -21,28 +24,43 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
+
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient() {
+    HttpLoggingInterceptor provideHttpLoggingInterceptor() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.level(HttpLoggingInterceptor.Level.HEADERS);
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
-        return new OkHttpClient.Builder().addInterceptor(interceptor)
-                .addInterceptor(chain -> {
-                    Request original = chain.request();
-                    Request request = original.newBuilder()
-                            .header("User-Agent", "Your-App-Name")
-                            .header("Accept", "application/vnd.yourapi.v1.full+json")
-                            .method(original.method(), original.body())
-                            .build();
-                    return chain.proceed(request);
-                }).build();
+        return interceptor;
+    }
+
+    @Provides
+    @Singleton
+    Interceptor provideInterceptorHeader() {
+        return chain -> {
+            Request original = chain.request();
+            Request request = original.newBuilder()
+                    .header("Authorization", StringUtils.token)
+                    .method(original.method(), original.body())
+                    .build();
+            return chain.proceed(request);
+        };
+    }
+
+    @Provides
+    @Singleton
+    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor loggingInterceptor, Interceptor provideInterceptorHeader) {
+        return new OkHttpClient.Builder()
+                .addInterceptor(provideInterceptorHeader)
+                .addInterceptor(loggingInterceptor)
+                .build();
     }
 
     @Provides
     @Singleton
     Retrofit provideRetrofit(OkHttpClient client) {
         return new retrofit2.Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com")
+                .baseUrl(BuildConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)
