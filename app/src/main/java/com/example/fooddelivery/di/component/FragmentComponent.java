@@ -8,6 +8,7 @@ import com.example.fooddelivery.ui.fragment.home.HomeFragment;
 import com.example.fooddelivery.ui.fragment.menu.MenuFragment;
 import com.example.fooddelivery.ui.fragment.more.MoreFragment;
 import com.example.fooddelivery.ui.fragment.my_location.MyLocationFragment;
+import com.example.fooddelivery.ui.fragment.order_place.OrderPlaceFragment;
 import com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodFragment;
 import com.example.fooddelivery.ui.fragment.search.SearchFragment;
 import com.example.fooddelivery.ui.fragment.search.dishs.DishFragment;
@@ -43,4 +44,6 @@ public interface FragmentComponent {
     void inject(PaymentMethodFragment paymentMethodFragment);
 
     void inject(AddNewCardFragment addNewCardFragment);
+
+    void inject(OrderPlaceFragment orderPlaceFragment);
 }

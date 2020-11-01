@@ -13,6 +13,7 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.FragmentCardBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
 
 import java.util.ArrayList;
@@ -63,5 +64,10 @@ public class CartFragment extends BaseFragment<FragmentCardBinding, CartViewMode
         binding.rcCart.setAdapter(cartAdapter);
         binding.rcCart.addItemDecoration(new CardPaddingGridDecorator());
         cartAdapter.addItems(list);
+    }
+
+    @Override
+    public void openOrderPlaceScreen() {
+        ((MainActivity) getActivity()).navigateFragment(R.id.action_cartFragment_to_orderPlaceFragment);
     }
 }

@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_red"
+            android:onClick="@{()->viewModel.openOrderPlaceScreen()}"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
             android:text="@string/txt_order_now"

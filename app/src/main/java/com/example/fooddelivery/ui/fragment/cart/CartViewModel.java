@@ -7,4 +7,8 @@ public class CartViewModel extends BaseViewModel<CartNavigator> {
     public CartViewModel(DataManager dataManager) {
         super(dataManager);
     }
+
+    public void openOrderPlaceScreen(){
+        getNavigator().openOrderPlaceScreen();
+    }
 }
