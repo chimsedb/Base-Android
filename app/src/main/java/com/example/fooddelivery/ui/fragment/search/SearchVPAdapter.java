@@ -13,6 +13,9 @@ public class SearchVPAdapter extends FragmentPagerAdapter {
 
     private String[] tabTitles = new String[]{"Restaurant", "Dish"};
 
+    private RestaurantFragment restaurantFragment;
+    private DishFragment dishFragment;
+
     public SearchVPAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
@@ -28,9 +31,11 @@ public class SearchVPAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return RestaurantFragment.newInstance();
+                restaurantFragment = RestaurantFragment.newInstance();
+                return restaurantFragment;
             case 1:
-                return DishFragment.newInstance();
+                dishFragment = DishFragment.newInstance();
+                return dishFragment;
         }
         return null;
     }
@@ -38,5 +43,13 @@ public class SearchVPAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return tabTitles.length;
+    }
+
+    public RestaurantFragment getRestaurantFragment() {
+        return restaurantFragment;
+    }
+
+    public DishFragment getDishFragment() {
+        return dishFragment;
     }
 }

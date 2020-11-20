@@ -13,14 +13,12 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.FragmentDishBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
-public class DishFragment extends BaseFragment<FragmentDishBinding, DishViewModel> implements DishNavigator {
+public class DishFragment extends BaseFragment<FragmentDishBinding, DishViewModel> implements DishNavigator, DisItemViewModel.CallBackToFragment {
     @Inject
     DishAdapter dishAdapter;
 
@@ -58,13 +56,20 @@ public class DishFragment extends BaseFragment<FragmentDishBinding, DishViewMode
     }
 
     private void setUpWithDishRC() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(String.valueOf(i));
-        }
+        viewModel.setRestaurantAdapter(dishAdapter);
         binding.rcDish.setLayoutManager(new GridLayoutManager(getContext(), 2, RecyclerView.VERTICAL, false));
         binding.rcDish.addItemDecoration(new CardPaddingGridDecorator());
         binding.rcDish.setAdapter(dishAdapter);
-        dishAdapter.addItems(list);
+        dishAdapter.setActivity(getMainActivity());
+        dishAdapter.setCallBackToFragment(this);
+    }
+
+    public MainActivity getMainActivity() {
+        return ((MainActivity) getActivity());
+    }
+
+    @Override
+    public void addFoodToCard(int id) {
+        ((MainActivity) getActivity()).setBadge(id);
     }
 }

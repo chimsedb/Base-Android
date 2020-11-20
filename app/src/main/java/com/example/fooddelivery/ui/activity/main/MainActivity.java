@@ -11,6 +11,7 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.ActivityMainBinding;
 import com.example.fooddelivery.di.component.ActivityComponent;
 import com.example.fooddelivery.ui.activity.base.BaseActivity;
+import com.google.android.material.badge.BadgeDrawable;
 
 import javax.inject.Inject;
 
@@ -22,6 +23,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private NavController navController;
 
     private ActivityMainBinding activityMainBinding;
+
+    private BadgeDrawable badge;
 
     @Override
     public int getLayoutId() {
@@ -44,7 +47,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_home_fragment)).getNavController();
         navController.setGraph(navController.getNavInflater().inflate(R.navigation.home_nav));
         NavigationUI.setupWithNavController(activityMainBinding.myBottomNavigation, navController);
-
+        badge = activityMainBinding.myBottomNavigation.getOrCreateBadge(R.id.navigation_cart);
+        showBadge();
         activityMainBinding.myBottomNavigation.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
@@ -68,6 +72,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         navController.navigate(id);
     }
 
+    public void navigateFragment(int id, Bundle bundle) {
+        navController.navigate(id, bundle);
+    }
+
     public void popFragmentBackStack() {
         navController.popBackStack();
     }
@@ -86,5 +94,27 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         } else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    public void setBadge(int id) {
+        viewModel.getDataManager().addFoodCart(id);
+        showBadge();
+        badge.setNumber(viewModel.getDataManager().getFoodCart().size());
+    }
+
+    public void showBadge() {
+        int listCardSize = viewModel.getDataManager().getFoodCart().size();
+        if (listCardSize > 0) {
+            badge.setNumber(listCardSize);
+            badge.setVisible(true);
+        } else {
+            hideBadge();
+        }
+    }
+
+    public void hideBadge() {
+        badge.setVisible(false);
+        badge.clearNumber();
+        viewModel.getDataManager().removeFoodCart();
     }
 }

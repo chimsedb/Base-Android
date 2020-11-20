@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="2 Restaurant Found"
-            android:textColor="@android:color/black"
+            android:text="@{viewModel.titleSearch}"
+            android:textColor="@color/color_blue"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

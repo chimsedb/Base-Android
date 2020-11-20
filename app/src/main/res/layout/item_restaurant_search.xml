@@ -1,94 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_5sdp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/img_thumbnail"
-        android:layout_width="@dimen/_80sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:scaleType="fitXY"
-        android:src="@drawable/thumbnail"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/txt_restaurant_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:text="Restaurant Name"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/_12sdp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
-        app:layout_constraintTop_toTopOf="parent" />
+        <variable
+            name="itemViewModel"
+            type="com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantItemViewModel" />
+    </data>
 
-    <TextView
-        android:id="@+id/txt_restaurant_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:text="Restaurant Address"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/_12sdp"
-        app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
-        app:layout_constraintTop_toBottomOf="@id/txt_restaurant_name" />
-
-    <Button
-        android:id="@+id/btn_restaurant_sales"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_20sdp"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:background="@color/color_blue"
-        android:text="Get 30% off"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/_10sdp"
-        app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
-        app:layout_constraintTop_toBottomOf="@id/txt_restaurant_address" />
-
-    <View
-        android:id="@+id/view_line"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_marginTop="@dimen/_15sdp"
-        app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
-        app:layout_constraintTop_toBottomOf="@id/btn_restaurant_sales" />
-
-    <LinearLayout
-        android:id="@+id/ln_rate"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:gravity="center_vertical"
-        app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
-        app:layout_constraintTop_toBottomOf="@id/view_line">
+        android:layout_margin="@dimen/_5sdp">
 
         <ImageView
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:src="@drawable/ic_star_blue" />
+            android:id="@+id/img_thumbnail"
+            imgUrl="@{itemViewModel.url}"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/txt_restaurant_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="3.7"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/_12sdp" />
-    </LinearLayout>
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:text="@{itemViewModel.name}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12sdp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Deliver in 45 min."
-        android:textColor="@android:color/darker_gray"
-        android:textSize="@dimen/_10sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/txt_restaurant_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:text="@{itemViewModel.address}"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toTopOf="@id/view_line"
+            app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/txt_restaurant_name" />
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/txt_restaurant_address" />
+
+        <LinearLayout
+            android:id="@+id/ln_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:gravity="bottom"
+            app:layout_constraintLeft_toRightOf="@id/img_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/view_line">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_star_blue" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:text="3.7"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deliver in 45 min."
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

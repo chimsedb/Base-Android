@@ -19,6 +19,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import static com.example.fooddelivery.utils.AppConstants.FOOD_ID;
+
 public class SuggestionFragment extends BaseFragment<FragmentSuggestionBinding, SuggestionViewModel> implements SuggestionNavigator {
 
     @Inject
@@ -48,24 +50,22 @@ public class SuggestionFragment extends BaseFragment<FragmentSuggestionBinding, 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding = getViewDataBinding();
-        viewModel.setNavigator(this);
+        viewModel.getFavoriteFood(getArguments().getInt(FOOD_ID));
         setUp();
     }
 
     private void setUp() {
+        binding = getViewDataBinding();
+        viewModel.setNavigator(this);
         setUpWithSuggestionAdapter();
     }
 
     private void setUpWithSuggestionAdapter() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("1");
-        }
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         binding.rcFood.setLayoutManager(manager);
         binding.rcFood.setAdapter(suggestionAdapter);
         suggestionAdapter.setActivity((MainActivity) getActivity());
-        suggestionAdapter.addItems(list);
+        viewModel.setSuggestionAdapter(suggestionAdapter);
+        viewModel.getListFavoriteFood();
     }
 }

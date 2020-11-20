@@ -1,5 +1,8 @@
 package com.example.fooddelivery.di.module;
 
+import android.app.Application;
+import android.content.Context;
+
 import com.example.fooddelivery.BuildConfig;
 import com.example.fooddelivery.data.AppDataManager;
 import com.example.fooddelivery.data.DataManager;
@@ -8,7 +11,9 @@ import com.example.fooddelivery.data.local.PreferencesHelper;
 import com.example.fooddelivery.data.remote.ApiHelper;
 import com.example.fooddelivery.data.remote.AppApiHelper;
 import com.example.fooddelivery.data.remote.ServiceEndPoint;
+import com.example.fooddelivery.di.scope.PreferenceInfo;
 import com.example.fooddelivery.ui.activity.utils.StringUtils;
+import com.example.fooddelivery.utils.AppConstants;
 
 import javax.inject.Singleton;
 
@@ -24,6 +29,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
+
+    @Provides
+    @PreferenceInfo
+    String providePreferenceName() {
+        return AppConstants.PREF_NAME;
+    }
+
+    @Provides
+    @Singleton
+    Context provideContext(Application application) {
+        return application;
+    }
 
     @Provides
     @Singleton

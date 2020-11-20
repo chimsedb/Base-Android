@@ -15,14 +15,12 @@ import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
-import com.example.fooddelivery.ui.fragment.suggestion.SuggestionFragment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
-public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewModel> implements MenuNavigator {
+import static com.example.fooddelivery.utils.AppConstants.RESTAURANT_ID;
+
+public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewModel> implements MenuNavigator, MenuItemViewModel.CallBackToFragment {
 
     @Inject
     MenuAdapter menuAdapter;
@@ -57,14 +55,17 @@ public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewMode
     }
 
     private void setUp() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("1");
-        }
+        viewModel.setMenuAdapter(menuAdapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         binding.rcFood.setLayoutManager(manager);
         binding.rcFood.setAdapter(menuAdapter);
         binding.rcFood.addItemDecoration(new CardPaddingGridDecorator());
-        menuAdapter.addItems(list);
+        menuAdapter.setCallBackToFragment(this);
+        viewModel.getListFoodOfRestaurant(getArguments().getInt(RESTAURANT_ID));
+    }
+
+    @Override
+    public void addFoodToCard(int id) {
+        ((MainActivity) getActivity()).setBadge(id);
     }
 }

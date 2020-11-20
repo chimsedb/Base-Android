@@ -71,4 +71,7 @@ public abstract class BaseFragment<T extends ViewDataBinding, V extends BaseView
                 .build();
     }
 
+    public V getViewModel() {
+        return viewModel;
+    }
 }

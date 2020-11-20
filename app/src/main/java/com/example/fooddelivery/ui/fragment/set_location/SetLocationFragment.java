@@ -18,6 +18,7 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.FragmentSetLocationBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.utils.AppConstants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -33,7 +34,7 @@ import java.util.Locale;
 
 public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding, SetLocationViewModel>
         implements SetLocationNavigator, OnMapReadyCallback {
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+
 
     private FragmentSetLocationBinding binding;
     private boolean locationPermissionGranted;
@@ -88,7 +89,7 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
         } else {
             ActivityCompat.requestPermissions(getActivity(),
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                    AppConstants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
 
@@ -98,7 +99,7 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
                                            @NonNull int[] grantResults) {
         locationPermissionGranted = false;
         switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+            case AppConstants.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -149,9 +150,7 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
                         }
                         try {
                             List<Address> addresses = geocoder.getFromLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), 1);
-                            Log.d("123123", addresses + "");
                         } catch (IOException e) {
-                            Log.d("123123", e.getMessage());
                             e.printStackTrace();
                         }
 

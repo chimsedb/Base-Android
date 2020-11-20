@@ -1,5 +1,11 @@
 package com.example.fooddelivery.data.local;
 
-public interface PreferencesHelper {
+import java.util.List;
 
+public interface PreferencesHelper {
+    List<Integer> getFoodCart();
+
+    void addFoodCart(int value);
+
+    void removeFoodCart();
 }

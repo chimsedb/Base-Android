@@ -10,22 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
-import com.example.fooddelivery.databinding.FragmentCardBinding;
+import com.example.fooddelivery.databinding.FragmentCartBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.inject.Inject;
 
-public class CartFragment extends BaseFragment<FragmentCardBinding, CartViewModel> implements CartNavigator {
+public class CartFragment extends BaseFragment<FragmentCartBinding, CartViewModel> implements CartNavigator {
     @Inject
     CartAdapter cartAdapter;
 
-    private FragmentCardBinding binding;
+    private FragmentCartBinding binding;
 
     @Override
     public int getBindingVariable() {
@@ -34,7 +31,7 @@ public class CartFragment extends BaseFragment<FragmentCardBinding, CartViewMode
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_card;
+        return R.layout.fragment_cart;
     }
 
     @Override
@@ -55,19 +52,17 @@ public class CartFragment extends BaseFragment<FragmentCardBinding, CartViewMode
     }
 
     private void setUpWithCartRC() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(String.valueOf(i));
-        }
+        viewModel.getCartCategoryFood();
+        viewModel.setCartAdapter(cartAdapter);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2, LinearLayoutManager.VERTICAL, false);
         binding.rcCart.setLayoutManager(manager);
         binding.rcCart.setAdapter(cartAdapter);
         binding.rcCart.addItemDecoration(new CardPaddingGridDecorator());
-        cartAdapter.addItems(list);
     }
 
     @Override
     public void openOrderPlaceScreen() {
+        ((MainActivity) getActivity()).hideBadge();
         ((MainActivity) getActivity()).navigateFragment(R.id.action_cartFragment_to_orderPlaceFragment);
     }
 }

@@ -58,13 +58,9 @@ public class RestaurantFragment extends BaseFragment<FragmentRestaurantBinding, 
     }
 
     private void setUpWihRestaurantRC() {
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add(String.valueOf(i));
-        }
+        viewModel.setRestaurantAdapter(restaurantAdapter);
         binding.rcRestaurant.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         binding.rcRestaurant.setAdapter(restaurantAdapter);
-        restaurantAdapter.addItems(list);
         restaurantAdapter.setActivity((MainActivity) getActivity());
     }
 }

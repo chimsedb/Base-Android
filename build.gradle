@@ -38,4 +38,5 @@ ext {
     cardViewVersion = '28.0.0'
     sdpVersion = '1.0.6'
     interceptorVersion = '4.2.1'
+    glideVersion = '4.11.0'
 }

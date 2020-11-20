@@ -12,9 +12,9 @@ import com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardViewModel;
 import com.example.fooddelivery.ui.fragment.cart.CartAdapter;
 import com.example.fooddelivery.ui.fragment.cart.CartViewModel;
 import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortBottomSheetDialog;
-import com.example.fooddelivery.ui.fragment.home.FoodAdapter;
+import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantNearYouAdapter;
 import com.example.fooddelivery.ui.fragment.home.HomeViewModel;
-import com.example.fooddelivery.ui.fragment.home.OfferAdapter;
+import com.example.fooddelivery.ui.fragment.home.adapter.FavoriteFoodAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuViewModel;
 import com.example.fooddelivery.ui.fragment.more.MoreViewModel;
@@ -25,7 +25,6 @@ import com.example.fooddelivery.ui.fragment.search.SearchVPAdapter;
 import com.example.fooddelivery.ui.fragment.search.SearchViewModel;
 import com.example.fooddelivery.ui.fragment.search.dishs.DishAdapter;
 import com.example.fooddelivery.ui.fragment.search.dishs.DishViewModel;
-import com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantAdapter;
 import com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantViewModel;
 import com.example.fooddelivery.ui.fragment.set_location.SetLocationViewModel;
 import com.example.fooddelivery.ui.fragment.suggestion.SuggestionAdapter;
@@ -76,14 +75,14 @@ public class FragmentModule {
 
     @Provides
     DishViewModel provideDishViewModel(DataManager dataManager) {
-        Supplier<DishViewModel> supplier = () -> new DishViewModel(dataManager);
+        Supplier<DishViewModel> supplier = () -> new DishViewModel(context, dataManager);
         ViewModelProviderFactory<DishViewModel> factory = new ViewModelProviderFactory<>(DishViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(DishViewModel.class);
     }
 
     @Provides
     RestaurantViewModel provideRestaurantViewModel(DataManager dataManager) {
-        Supplier<RestaurantViewModel> supplier = () -> new RestaurantViewModel(dataManager);
+        Supplier<RestaurantViewModel> supplier = () -> new RestaurantViewModel(context, dataManager);
         ViewModelProviderFactory<RestaurantViewModel> factory = new ViewModelProviderFactory<>(RestaurantViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(RestaurantViewModel.class);
     }
@@ -140,13 +139,13 @@ public class FragmentModule {
     //Adapter RecyclerView
 
     @Provides
-    OfferAdapter provideOfferAdapter() {
-        return new OfferAdapter();
+    FavoriteFoodAdapter provideOfferAdapter() {
+        return new FavoriteFoodAdapter();
     }
 
     @Provides
-    FoodAdapter provideFoodAdapter() {
-        return new FoodAdapter();
+    RestaurantNearYouAdapter provideFoodAdapter() {
+        return new RestaurantNearYouAdapter();
     }
 
     @Provides
@@ -160,8 +159,8 @@ public class FragmentModule {
     }
 
     @Provides
-    RestaurantAdapter provideRestaurantAdapter() {
-        return new RestaurantAdapter();
+    com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantAdapter provideRestaurantAdapter() {
+        return new com.example.fooddelivery.ui.fragment.search.restaurant.RestaurantAdapter();
     }
 
     @Provides

@@ -44,4 +44,9 @@
     <string name="txt_cvv">CVV</string>
     <string name="make_payment">Make Payment</string>
     <string name="txt_add_new_card">Add New Card</string>
+    <string name="txt_top_restaurant_near_you">Top restaurants near you</string>
+    <string name="txt_filter">Filter</string>
+    <string name="txt_top_favorites">Top Favorites Food</string>
+    <string name="txt_add">Add</string>
+    <string name="txt_title_search_result">Result : %d</string>
 </resources>
