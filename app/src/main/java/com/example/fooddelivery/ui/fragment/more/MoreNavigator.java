@@ -4,4 +4,6 @@ public interface MoreNavigator {
     void manageAddressOpen();
 
     void paymentMethodOpen();
+
+    void logout();
 }

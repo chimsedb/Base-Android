@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="itemViewModel"
+            type="com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/ln_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_ic_card"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/ic_master_card" />
+
+            <ImageView
+                android:id="@+id/img_check_card"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentRight="true"
+                android:padding="@dimen/_10sdp"
+                android:src="@{itemViewModel.isActive ? @drawable/ic_baseline_check_circle_green_24 : @drawable/ic_baseline_check_circle_24 }" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_toLeftOf="@id/img_check_card"
+                android:layout_toRightOf="@id/img_ic_card"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/_10sdp"
+                android:text="@{itemViewModel.cardNumber}"
+                android:textColor="@android:color/black" />
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/et_cvv"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:inputType="number"
+            android:maxLength="3"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="@string/txt_cvv"
+            android:paddingLeft="@dimen/_25sdp"
+            android:paddingRight="@dimen/_25sdp"
+            android:text="@={itemViewModel.cvv}"
+            android:textColorHint="@color/light_gray_1"
+            android:visibility="@{itemViewModel.isShowActive ? View.VISIBLE : View.GONE}"
+            app:layout_constraintRight_toLeftOf="@id/btn_make_payment"
+            app:layout_constraintTop_toBottomOf="@id/ln_card" />
+
+        <Button
+            android:id="@+id/btn_make_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:background="@color/light_gray_1"
+            android:onClick="@{()->itemViewModel.activeCard()}"
+            android:paddingLeft="@dimen/_20sdp"
+            android:paddingRight="@dimen/_20sdp"
+            android:text="@string/make_payment"
+            android:textColor="@android:color/white"
+            android:visibility="@{itemViewModel.isShowActive ? View.VISIBLE : View.GONE}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ln_card" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

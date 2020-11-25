@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.6.1'
@@ -39,4 +39,5 @@ ext {
     sdpVersion = '1.0.6'
     interceptorVersion = '4.2.1'
     glideVersion = '4.11.0'
+    circleImageViewVersion = '3.1.0'
 }

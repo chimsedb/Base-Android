@@ -9,12 +9,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.fooddelivery.data.model.api.response.CartCategoryFoodResponse;
 import com.example.fooddelivery.databinding.ItemFoodCartBinding;
 import com.example.fooddelivery.ui.activity.base.BaseViewHolder;
+import com.example.fooddelivery.ui.fragment.menu.MenuItemViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private List<CartCategoryFoodResponse> list;
+    private List<CartModel> cartModelList;
+    private CartItemViewModel.CallBackToFragment callBackToFragment;
+
+    public void setCallBackToFragment(CartItemViewModel.CallBackToFragment callBackToFragment) {
+        this.callBackToFragment = callBackToFragment;
+    }
 
     public CartAdapter() {
         list = new ArrayList<>();
@@ -49,6 +56,26 @@ public class CartAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         notifyDataSetChanged();
     }
 
+    public void setListTotalItem(List<CartModel> cartModelList) {
+        this.cartModelList = cartModelList;
+    }
+
+    public List<CartCategoryFoodResponse> getList() {
+        return list;
+    }
+
+    public void setList(List<CartCategoryFoodResponse> list) {
+        this.list = list;
+    }
+
+    public List<CartModel> getCartModelList() {
+        return cartModelList;
+    }
+
+    public void setCartModelList(List<CartModel> cartModelList) {
+        this.cartModelList = cartModelList;
+    }
+
     public class ViewHolder extends BaseViewHolder {
         private ItemFoodCartBinding binding;
 
@@ -59,7 +86,7 @@ public class CartAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            binding.setItemViewModel(new CartItemViewModel(list.get(position)));
+            binding.setItemViewModel(new CartItemViewModel(callBackToFragment, list.get(position), cartModelList));
         }
     }
 }

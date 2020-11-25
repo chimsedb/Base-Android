@@ -1,4 +1,6 @@
 <resources>
+    <string name="facebook_app_id">648547579152007</string>
+    <string name="fb_login_protocol_scheme">fb648547579152007</string>
     <string name="app_name">Food Delivery</string>
     <string name="splash_description">VietNam\'s Faster Growing \nFood Delivery Platform</string>
     <string name="welcome_to">Welcome to</string>
@@ -12,7 +14,7 @@
     <string name="continue_with_facebook">Continue With Facebook</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
-    <string name="txt_sort_or_filter">Sort / Filter</string>
+    <string name="txt_filter">Filter</string>
     <string name="txt_clear_all">Clear All</string>
     <string name="txt_apply">Apply</string>
     <string name="txt_search_restaurant">Search Restaurant / Dish</string>
@@ -45,8 +47,17 @@
     <string name="make_payment">Make Payment</string>
     <string name="txt_add_new_card">Add New Card</string>
     <string name="txt_top_restaurant_near_you">Top restaurants near you</string>
-    <string name="txt_filter">Filter</string>
     <string name="txt_top_favorites">Top Favorites Food</string>
     <string name="txt_add">Add</string>
     <string name="txt_title_search_result">Result : %d</string>
+    <string name="txt_card_number">Card Number</string>
+    <string name="txt_enter_card_number">Enter your card number</string>
+    <string name="txt_date_valid">Date Valid</string>
+    <string name="txt_card_info">Card Info</string>
+    <string name="txt_card_name">Card Name</string>
+    <string name="txt_enter_card_name">Enter your card name</string>
+    <string name="txt_invalid">Invalid</string>
+    <string name="txt_cvv_invalid">CVV Invalid</string>
+    <string name="txt_change_active_success">Change Active Success</string>
+    <string name="txt_not_found">Not Found</string>
 </resources>

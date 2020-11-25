@@ -11,8 +11,8 @@ import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.fragment.add_new_card.AddNewCardViewModel;
 import com.example.fooddelivery.ui.fragment.cart.CartAdapter;
 import com.example.fooddelivery.ui.fragment.cart.CartViewModel;
-import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortBottomSheetDialog;
-import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantNearYouAdapter;
+import com.example.fooddelivery.ui.fragment.filter_sort.FilterBottomSheetDialog;
+import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantAdapter;
 import com.example.fooddelivery.ui.fragment.home.HomeViewModel;
 import com.example.fooddelivery.ui.fragment.home.adapter.FavoriteFoodAdapter;
 import com.example.fooddelivery.ui.fragment.menu.MenuAdapter;
@@ -20,6 +20,7 @@ import com.example.fooddelivery.ui.fragment.menu.MenuViewModel;
 import com.example.fooddelivery.ui.fragment.more.MoreViewModel;
 import com.example.fooddelivery.ui.fragment.my_location.MyLocationViewModel;
 import com.example.fooddelivery.ui.fragment.order_place.OrderPlaceViewModel;
+import com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodAdapter;
 import com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodViewModel;
 import com.example.fooddelivery.ui.fragment.search.SearchVPAdapter;
 import com.example.fooddelivery.ui.fragment.search.SearchViewModel;
@@ -117,14 +118,14 @@ public class FragmentModule {
 
     @Provides
     PaymentMethodViewModel providePaymentMethodViewModel(DataManager dataManager) {
-        Supplier<PaymentMethodViewModel> supplier = () -> new PaymentMethodViewModel(dataManager);
+        Supplier<PaymentMethodViewModel> supplier = () -> new PaymentMethodViewModel(context,dataManager);
         ViewModelProviderFactory<PaymentMethodViewModel> factory = new ViewModelProviderFactory<>(PaymentMethodViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(PaymentMethodViewModel.class);
     }
 
     @Provides
     AddNewCardViewModel provideAddNewCardViewModel(DataManager dataManager) {
-        Supplier<AddNewCardViewModel> supplier = () -> new AddNewCardViewModel(dataManager);
+        Supplier<AddNewCardViewModel> supplier = () -> new AddNewCardViewModel(context,dataManager);
         ViewModelProviderFactory<AddNewCardViewModel> factory = new ViewModelProviderFactory<>(AddNewCardViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(AddNewCardViewModel.class);
     }
@@ -144,8 +145,8 @@ public class FragmentModule {
     }
 
     @Provides
-    RestaurantNearYouAdapter provideFoodAdapter() {
-        return new RestaurantNearYouAdapter();
+    RestaurantAdapter provideFoodAdapter() {
+        return new RestaurantAdapter();
     }
 
     @Provides
@@ -175,8 +176,8 @@ public class FragmentModule {
 
     // Other
     @Provides
-    FilterAndSortBottomSheetDialog provideFilterBottomSheetFragment() {
-        return FilterAndSortBottomSheetDialog.newInstance();
+    FilterBottomSheetDialog provideFilterBottomSheetFragment() {
+        return FilterBottomSheetDialog.newInstance();
     }
 
     @Provides
@@ -184,5 +185,8 @@ public class FragmentModule {
         return new SearchVPAdapter(fragment.getChildFragmentManager());
     }
 
-
+    @Provides
+    PaymentMethodAdapter providePaymentMethodAdapter() {
+        return new PaymentMethodAdapter();
+    }
 }

@@ -41,7 +41,7 @@ public class DishViewModel extends BaseViewModel<DishNavigator> {
                 .subscribe(new Observer<List<FoodByNameResponse>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-
+            
                     }
 
                     @Override
@@ -61,6 +61,5 @@ public class DishViewModel extends BaseViewModel<DishNavigator> {
 
                     }
                 });
-
     }
 }

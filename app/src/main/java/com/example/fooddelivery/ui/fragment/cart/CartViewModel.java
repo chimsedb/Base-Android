@@ -1,16 +1,16 @@
 package com.example.fooddelivery.ui.fragment.cart;
 
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
-
 import com.example.fooddelivery.data.DataManager;
+import com.example.fooddelivery.data.model.api.request.UserCartConfirmRequest;
 import com.example.fooddelivery.data.model.api.response.CartCategoryFoodResponse;
+import com.example.fooddelivery.data.model.api.response.UserCartConfirmResponse;
 import com.example.fooddelivery.ui.activity.base.BaseViewModel;
-import com.example.fooddelivery.ui.activity.main.MainViewModel;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -34,12 +34,21 @@ public class CartViewModel extends BaseViewModel<CartNavigator> {
     }
 
     public void openOrderPlaceScreen() {
-        getNavigator().openOrderPlaceScreen();
+        sendUserCartConfirm();
     }
 
     public void getCartCategoryFood() {
         Map<Integer, Long> counted = getDataManager().getFoodCart().stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        List<CartModel> cartModelList = new ArrayList<>();
+        List<Integer> cartIDList = new ArrayList<>();
+        cartIDList.addAll(counted.keySet());
+        List<Long> cartCountList = new ArrayList<>();
+        cartCountList.addAll(counted.values());
+        for (int i = 0; i < cartIDList.size(); i++) {
+            cartModelList.add(new CartModel(cartIDList.get(i), cartCountList.get(i)));
+        }
+
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < counted.keySet().size(); i++) {
             builder.append(" or ")
@@ -60,6 +69,7 @@ public class CartViewModel extends BaseViewModel<CartNavigator> {
 
                         @Override
                         public void onNext(@NonNull List<CartCategoryFoodResponse> responses) {
+                            cartAdapter.setListTotalItem(cartModelList);
                             cartAdapter.setItems(responses);
                         }
 
@@ -75,5 +85,46 @@ public class CartViewModel extends BaseViewModel<CartNavigator> {
                     });
         }
 
+    }
+
+    private void sendUserCartConfirm() {
+        List<UserCartConfirmRequest> request = new ArrayList<>();
+        for (int i = 0; i < cartAdapter.getList().size(); i++) {
+            request.add(new UserCartConfirmRequest(
+                    cartAdapter.getList().get(i).getRes_id(),
+                    cartAdapter.getList().get(i).getId(),
+                    getDataManager().getUserInfo().getId(),
+                    cartAdapter.getList().get(i).getFood_name(),
+                    (int) cartAdapter.getCartModelList().get(i).getCount(),
+                    Integer.parseInt(cartAdapter.getList().get(i).getPrice()),
+                    cartAdapter.getList().get(i).getDiscount(),
+                    Calendar.getInstance().getTimeInMillis()
+            ));
+        }
+        getDataManager().sendUserCartConfirm(request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserCartConfirmResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull UserCartConfirmResponse cartConfirmResponse) {
+                        getNavigator().openPaymentScreen();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d("123123", e.getMessage());
+                        e.printStackTrace();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

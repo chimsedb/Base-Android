@@ -1,8 +1,10 @@
 package com.example.fooddelivery.ui.activity.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
@@ -11,6 +13,7 @@ import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.ActivityMainBinding;
 import com.example.fooddelivery.di.component.ActivityComponent;
 import com.example.fooddelivery.ui.activity.base.BaseActivity;
+import com.example.fooddelivery.utils.AppConstants;
 import com.google.android.material.badge.BadgeDrawable;
 
 import javax.inject.Inject;
@@ -96,8 +99,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
     }
 
-    public void setBadge(int id) {
-        viewModel.getDataManager().addFoodCart(id);
+    public void setBadge(int id, AppConstants.CartType type) {
+        switch (type) {
+            case ADD:
+                viewModel.getDataManager().addItemFoodCart(id);
+                break;
+            case REMOVE:
+                viewModel.getDataManager().removeItemFoodCart(id);
+                break;
+        }
         showBadge();
         badge.setNumber(viewModel.getDataManager().getFoodCart().size());
     }

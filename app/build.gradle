@@ -17,6 +17,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BASE_URL", "\"http://192.168.31.181:8080\"")
+//            buildConfigField("String", "BASE_URL", "\"http://192.168.1.4:8080\"")
 //            buildConfigField("String", "BASE_URL", "\"http://192.168.43.82:8080\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
@@ -79,7 +80,13 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.interceptorVersion"
 
-//    Glide
+    //Glide
     implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    //Facebook SDK
+    implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+
+    //Circle ImageView
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageViewVersion"
 }

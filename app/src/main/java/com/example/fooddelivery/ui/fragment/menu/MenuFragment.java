@@ -15,12 +15,17 @@ import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
+import com.example.fooddelivery.ui.fragment.cart.CartItemViewModel;
+import com.example.fooddelivery.utils.AppConstants;
 
 import javax.inject.Inject;
 
+import static com.example.fooddelivery.utils.AppConstants.CartType.ADD;
+import static com.example.fooddelivery.utils.AppConstants.CartType.REMOVE;
 import static com.example.fooddelivery.utils.AppConstants.RESTAURANT_ID;
 
-public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewModel> implements MenuNavigator, MenuItemViewModel.CallBackToFragment {
+public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewModel> implements MenuNavigator,
+        MenuItemViewModel.CallBackToFragment {
 
     @Inject
     MenuAdapter menuAdapter;
@@ -66,6 +71,6 @@ public class MenuFragment extends BaseFragment<FragmentMenuBinding, MenuViewMode
 
     @Override
     public void addFoodToCard(int id) {
-        ((MainActivity) getActivity()).setBadge(id);
+        ((MainActivity) getActivity()).setBadge(id, ADD);
     }
 }

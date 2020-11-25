@@ -3,6 +3,7 @@ package com.example.fooddelivery.ui.fragment.search.dishs;
 import androidx.databinding.ObservableField;
 
 import com.example.fooddelivery.data.model.api.response.FoodByNameResponse;
+import com.example.fooddelivery.ui.activity.utils.StringUtils;
 
 public class DisItemViewModel {
 
@@ -21,7 +22,7 @@ public class DisItemViewModel {
         builderDiscount.append(" Giảm ").append(response.getDiscount())
                 .append("%");
         name.set(response.getFood_name() + builderDiscount.toString());
-        price.set(response.getPrice());
+        price.set(StringUtils.getPriceVND(response.getPrice()));
     }
 
     public void addToCard() {

@@ -13,12 +13,9 @@ import com.example.fooddelivery.databinding.FragmentHomeBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
-import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortBottomSheetDialog;
-import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantNearYouAdapter;
+import com.example.fooddelivery.ui.fragment.filter_sort.FilterBottomSheetDialog;
+import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantAdapter;
 import com.example.fooddelivery.ui.fragment.home.adapter.FavoriteFoodAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,10 +26,10 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     FavoriteFoodAdapter favoriteFoodAdapter;
 
     @Inject
-    RestaurantNearYouAdapter restaurantNearYouAdapter;
+    RestaurantAdapter restaurantAdapter;
 
     @Inject
-    FilterAndSortBottomSheetDialog filterAndSortBottomSheetDialog;
+    FilterBottomSheetDialog filterBottomSheetDialog;
 
     private FragmentHomeBinding binding;
 
@@ -79,9 +76,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
     private void setUpWithFoodAdapter() {
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         binding.rcFood.setLayoutManager(manager);
-        binding.rcFood.setAdapter(restaurantNearYouAdapter);
-        viewModel.setRestaurantNearYouAdapter(restaurantNearYouAdapter);
-        restaurantNearYouAdapter.setActivity((MainActivity) getActivity());
+        binding.rcFood.setAdapter(restaurantAdapter);
+        viewModel.setRestaurantAdapter(restaurantAdapter);
+        restaurantAdapter.setActivity((MainActivity) getActivity());
     }
 
     @Override
@@ -91,11 +88,16 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
 
     @Override
     public void openDialogFilerAndSort() {
-        filterAndSortBottomSheetDialog.show(getFragmentManager(), FilterAndSortBottomSheetDialog.TAG);
+        filterBottomSheetDialog.show(getFragmentManager(), FilterBottomSheetDialog.TAG);
+        filterBottomSheetDialog.setHomeFragment(this);
     }
 
     @Override
     public void openMyLocation() {
         ((MainActivity) getActivity()).navigateFragment(R.id.action_homeFragment_to_myLocationFragment);
+    }
+
+    public RestaurantAdapter getRestaurantAdapter() {
+        return restaurantAdapter;
     }
 }

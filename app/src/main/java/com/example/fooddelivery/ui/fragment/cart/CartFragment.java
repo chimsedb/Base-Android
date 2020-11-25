@@ -18,7 +18,12 @@ import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
 
 import javax.inject.Inject;
 
-public class CartFragment extends BaseFragment<FragmentCartBinding, CartViewModel> implements CartNavigator {
+import static com.example.fooddelivery.utils.AppConstants.BUNDLE_FROM_CART_FRAGMENT;
+import static com.example.fooddelivery.utils.AppConstants.CartType.ADD;
+import static com.example.fooddelivery.utils.AppConstants.CartType.REMOVE;
+
+public class CartFragment extends BaseFragment<FragmentCartBinding, CartViewModel>
+        implements CartNavigator, CartItemViewModel.CallBackToFragment {
     @Inject
     CartAdapter cartAdapter;
 
@@ -58,11 +63,24 @@ public class CartFragment extends BaseFragment<FragmentCartBinding, CartViewMode
         binding.rcCart.setLayoutManager(manager);
         binding.rcCart.setAdapter(cartAdapter);
         binding.rcCart.addItemDecoration(new CardPaddingGridDecorator());
+        cartAdapter.setCallBackToFragment(this);
     }
 
     @Override
-    public void openOrderPlaceScreen() {
+    public void openPaymentScreen() {
         ((MainActivity) getActivity()).hideBadge();
-        ((MainActivity) getActivity()).navigateFragment(R.id.action_cartFragment_to_orderPlaceFragment);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(BUNDLE_FROM_CART_FRAGMENT, true);
+        ((MainActivity) getActivity()).navigateFragment(R.id.action_cartFragment_to_paymentMethodFragment,bundle);
+    }
+
+    @Override
+    public void addFoodToCard(int id) {
+        ((MainActivity) getActivity()).setBadge(id, ADD);
+    }
+
+    @Override
+    public void removeFoodToCard(int id) {
+        ((MainActivity) getActivity()).setBadge(id, REMOVE);
     }
 }

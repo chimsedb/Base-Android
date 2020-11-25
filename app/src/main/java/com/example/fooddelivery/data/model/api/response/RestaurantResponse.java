@@ -1,13 +1,13 @@
 package com.example.fooddelivery.data.model.api.response;
 
-public class RestaurantNearYouResponse {
+public class RestaurantResponse {
     private int id;
     private String res_name;
     private String address;
     private String banner;
     private double rate;
 
-    public RestaurantNearYouResponse(int id, String res_name, String address, String banner, double rate) {
+    public RestaurantResponse(int id, String res_name, String address, String banner, double rate) {
         this.id = id;
         this.res_name = res_name;
         this.address = address;

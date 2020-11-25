@@ -83,5 +83,13 @@
     <fragment
         android:id="@+id/setLocationFragment"
         android:name="com.example.fooddelivery.ui.fragment.set_location.SetLocationFragment"
-        android:label="SetLocationFragment" />
+        android:label="SetLocationFragment">
+        <action
+            android:id="@+id/action_setLocationFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

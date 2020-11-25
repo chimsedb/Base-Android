@@ -9,8 +9,7 @@ import com.example.fooddelivery.ViewModelProviderFactory;
 import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.ui.activity.base.BaseBottomSheetDialog;
 import com.example.fooddelivery.ui.fragment.filter_sort.FilterAdapter;
-import com.example.fooddelivery.ui.fragment.filter_sort.FilterAndSortViewModel;
-import com.example.fooddelivery.ui.fragment.filter_sort.SortAdapter;
+import com.example.fooddelivery.ui.fragment.filter_sort.FilterViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -26,15 +25,10 @@ public class BottomSheetDialogModule {
     }
 
     @Provides
-    FilterAndSortViewModel provideFilterAndSortViewModel(DataManager dataManager) {
-        Supplier<FilterAndSortViewModel> supplier = () -> new FilterAndSortViewModel(dataManager);
-        ViewModelProviderFactory<FilterAndSortViewModel> factory = new ViewModelProviderFactory<>(FilterAndSortViewModel.class, supplier);
-        return new ViewModelProvider(dialog, factory).get(FilterAndSortViewModel.class);
-    }
-
-    @Provides
-    SortAdapter provideSortAdapter() {
-        return new SortAdapter();
+    FilterViewModel provideFilterAndSortViewModel(DataManager dataManager) {
+        Supplier<FilterViewModel> supplier = () -> new FilterViewModel(context,dataManager);
+        ViewModelProviderFactory<FilterViewModel> factory = new ViewModelProviderFactory<>(FilterViewModel.class, supplier);
+        return new ViewModelProvider(dialog, factory).get(FilterViewModel.class);
     }
 
     @Provides

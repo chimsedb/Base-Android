@@ -1,13 +1,13 @@
 package com.example.fooddelivery.data.model.api.response;
 
 public class CartCategoryFoodResponse {
-    public int id;
-    public int food_type_id;
-    public String food_name;
-    public String price;
-    public int discount;
-    public String thumbnail;
-    public int res_id;
+    private int id;
+    private int food_type_id;
+    private String food_name;
+    private String price;
+    private int discount;
+    private String thumbnail;
+    private int res_id;
 
     public CartCategoryFoodResponse(int id, int food_type_id, String food_name, String price, int discount, String thumbnail, int res_id) {
         this.id = id;

@@ -18,6 +18,8 @@ import com.example.fooddelivery.ui.activity.utils.CardPaddingGridDecorator;
 
 import javax.inject.Inject;
 
+import static com.example.fooddelivery.utils.AppConstants.CartType.ADD;
+
 public class DishFragment extends BaseFragment<FragmentDishBinding, DishViewModel> implements DishNavigator, DisItemViewModel.CallBackToFragment {
     @Inject
     DishAdapter dishAdapter;
@@ -70,6 +72,6 @@ public class DishFragment extends BaseFragment<FragmentDishBinding, DishViewMode
 
     @Override
     public void addFoodToCard(int id) {
-        ((MainActivity) getActivity()).setBadge(id);
+        ((MainActivity) getActivity()).setBadge(id,ADD);
     }
 }

@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.fooddelivery.R;
-import com.example.fooddelivery.data.model.api.response.RestaurantNearYouResponse;
+import com.example.fooddelivery.data.model.api.response.RestaurantResponse;
 import com.example.fooddelivery.databinding.ItemRestaurantHomeBinding;
 import com.example.fooddelivery.ui.activity.base.BaseViewHolder;
 import com.example.fooddelivery.ui.activity.main.MainActivity;
@@ -20,17 +20,17 @@ import java.util.List;
 
 import static com.example.fooddelivery.utils.AppConstants.RESTAURANT_ID;
 
-public class RestaurantNearYouAdapter extends RecyclerView.Adapter<BaseViewHolder> {
-    private List<RestaurantNearYouResponse> list;
+public class RestaurantAdapter extends RecyclerView.Adapter<BaseViewHolder> {
+    private List<RestaurantResponse> list;
     private MainActivity mainActivity;
 
-    public RestaurantNearYouAdapter() {
+    public RestaurantAdapter() {
         this.list = new ArrayList<>();
     }
 
     @NonNull
     @Override
-    public RestaurantNearYouAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RestaurantAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemRestaurantHomeBinding binding = ItemRestaurantHomeBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent, false);
         return new ViewHolder(binding);
@@ -67,12 +67,12 @@ public class RestaurantNearYouAdapter extends RecyclerView.Adapter<BaseViewHolde
         }
     }
 
-    public void addItems(List<RestaurantNearYouResponse> list) {
+    public void addItems(List<RestaurantResponse> list) {
         this.list.addAll(list);
         notifyDataSetChanged();
     }
 
-    public void setList(List<RestaurantNearYouResponse> list) {
+    public void setItems(List<RestaurantResponse> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();

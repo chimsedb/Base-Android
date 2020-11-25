@@ -1,12 +1,13 @@
 package com.example.fooddelivery.ui.fragment.home;
 
+import androidx.databinding.ObservableField;
+
 import com.example.fooddelivery.data.DataManager;
 import com.example.fooddelivery.data.model.api.response.FavoriteFoodResponse;
-import com.example.fooddelivery.data.model.api.response.FoodResponse;
-import com.example.fooddelivery.data.model.api.response.RestaurantNearYouResponse;
+import com.example.fooddelivery.data.model.api.response.RestaurantResponse;
 import com.example.fooddelivery.ui.activity.base.BaseViewModel;
 import com.example.fooddelivery.ui.fragment.home.adapter.FavoriteFoodAdapter;
-import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantNearYouAdapter;
+import com.example.fooddelivery.ui.fragment.home.adapter.RestaurantAdapter;
 
 import java.util.List;
 
@@ -17,16 +18,18 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends BaseViewModel<HomeNavigator> {
+    public ObservableField<String> address = new ObservableField<>("");
 
-    private RestaurantNearYouAdapter restaurantNearYouAdapter;
+    private RestaurantAdapter restaurantAdapter;
     private FavoriteFoodAdapter favoriteFoodAdapter;
 
     public HomeViewModel(DataManager dataManager) {
         super(dataManager);
     }
 
-    public void setRestaurantNearYouAdapter(RestaurantNearYouAdapter restaurantNearYouAdapter) {
-        this.restaurantNearYouAdapter = restaurantNearYouAdapter;
+    public void setRestaurantAdapter(RestaurantAdapter restaurantAdapter) {
+        this.restaurantAdapter = restaurantAdapter;
+        address.set(getDataManager().getCurrentAddress());
     }
 
     public void setFavoriteFoodAdapter(FavoriteFoodAdapter favoriteFoodAdapter) {
@@ -45,15 +48,15 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
         getDataManager().getListRestaurantNearYouResponse()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<List<RestaurantNearYouResponse>>() {
+                .subscribe(new Observer<List<RestaurantResponse>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(@NonNull List<RestaurantNearYouResponse> responses) {
-                       restaurantNearYouAdapter.setList(responses);
+                    public void onNext(@NonNull List<RestaurantResponse> responses) {
+                        restaurantAdapter.setItems(responses);
                     }
 
                     @Override
@@ -68,7 +71,7 @@ public class HomeViewModel extends BaseViewModel<HomeNavigator> {
                 });
     }
 
-    public void getFavoriteFood(){
+    public void getFavoriteFood() {
         getDataManager().getFavoriteFoodResponse()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

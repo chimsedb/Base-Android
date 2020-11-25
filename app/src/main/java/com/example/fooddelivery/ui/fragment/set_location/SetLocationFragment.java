@@ -5,19 +5,23 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.navigation.NavOptions;
 
 import com.example.fooddelivery.BR;
 import com.example.fooddelivery.R;
 import com.example.fooddelivery.databinding.FragmentSetLocationBinding;
 import com.example.fooddelivery.di.component.FragmentComponent;
 import com.example.fooddelivery.ui.activity.base.BaseFragment;
+import com.example.fooddelivery.ui.activity.main.MainActivity;
 import com.example.fooddelivery.utils.AppConstants;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -27,6 +31,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,6 +47,7 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private Location lastKnownLocation;
     private Geocoder geocoder;
+    private String userAddress;
 
     @Override
     public int getBindingVariable() {
@@ -150,6 +156,8 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
                         }
                         try {
                             List<Address> addresses = geocoder.getFromLocation(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude(), 1);
+                            userAddress = addresses.get(0).getAddressLine(0);
+                            viewModel.address.set(userAddress);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -158,8 +166,18 @@ public class SetLocationFragment extends BaseFragment<FragmentSetLocationBinding
                 });
             }
         } catch (SecurityException e) {
-            Log.e("Exception: %s", e.getMessage(), e);
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
+    @Override
+    public void saveAddress() {
+        if (!TextUtils.isEmpty(userAddress)) {
+            viewModel.setCurrentAddress(userAddress);
+            viewModel.updateUserInfo();
+            ((MainActivity) getActivity()).navigateFragment(R.id.action_setLocationFragment_to_homeFragment);
+        } else {
+            Toast.makeText(getContext(), "Can not save address", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

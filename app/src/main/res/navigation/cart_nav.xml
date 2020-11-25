@@ -9,8 +9,8 @@
         android:name="com.example.fooddelivery.ui.fragment.cart.CartFragment"
         android:label="CartFragment">
         <action
-            android:id="@+id/action_cartFragment_to_orderPlaceFragment"
-            app:destination="@id/orderPlaceFragment"
+            android:id="@+id/action_cartFragment_to_paymentMethodFragment"
+            app:destination="@id/paymentMethodFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -19,5 +19,17 @@
     <fragment
         android:id="@+id/orderPlaceFragment"
         android:name="com.example.fooddelivery.ui.fragment.order_place.OrderPlaceFragment"
-        android:label="OrderPlaceFragment" />
+        android:label="OrderPlaceFragment"></fragment>
+    <fragment
+        android:id="@+id/paymentMethodFragment"
+        android:name="com.example.fooddelivery.ui.fragment.payment_methods.PaymentMethodFragment"
+        android:label="PaymentMethodFragment">
+        <action
+            android:id="@+id/action_paymentMethodFragment_to_orderPlaceFragment"
+            app:destination="@id/orderPlaceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

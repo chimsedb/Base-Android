@@ -35,8 +35,8 @@
             android:id="@+id/txt_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:text="31A,RK, near Vasushisti Mallon"
+            android:maxLines="2"
+            android:text="@{viewModel.address}"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txt_title" />
